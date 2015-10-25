@@ -1,0 +1,128 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.seo.treemanagement.EditActivity">
+
+    <!-- ID 수목명 수목명 수목명 -->
+
+    <TextView
+        android:id="@+id/TagId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tool_bar"
+        android:textSize="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/dark_grey"
+        android:text="@string/tag_id" />
+
+    <TextView
+        android:id="@+id/TagIdInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tool_bar"
+        android:layout_toRightOf="@id/TagId"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="75dp"
+        android:textColor="@color/dark_green"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/NameOfTree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TagId"
+        android:textSize="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/dark_grey"
+        android:text="@string/name_of_tree" />
+
+    <EditText
+        android:id="@+id/NameOfTreeInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TagId"
+        android:layout_toRightOf="@id/NameOfTree"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="45dp"
+        android:textColor="@color/dark_green"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/SpeciesOfTree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/NameOfTree"
+        android:textSize="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/dark_grey"
+        android:text="@string/species_of_tree" />
+
+    <EditText
+        android:id="@+id/SpeciesOfTreeInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/NameOfTree"
+        android:layout_toRightOf="@id/SpeciesOfTree"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="45dp"
+        android:textColor="@color/dark_green"
+        android:textSize="15dp" />
+
+
+    <TextView
+        android:id="@+id/DateOfPlanting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/SpeciesOfTree"
+        android:textSize="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/dark_grey"
+        android:text="@string/date_of_planting" />
+
+    <EditText
+        android:id="@+id/DateOfPlantingInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/SpeciesOfTree"
+        android:layout_toRightOf="@id/DateOfPlanting"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="45dp"
+        android:textColor="@color/dark_green"
+        android:textSize="15dp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/DateOfPlantingInfo"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true">
+
+        <ImageButton
+            android:layout_margin="15dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_action"
+            android:background="@drawable/circle"
+            android:id="@+id/TagEditImageButton"
+            android:layout_gravity="right|top" />
+    </FrameLayout>
+
+</RelativeLayout>
+<!--android:id="@+id/StoreframeLayout -->

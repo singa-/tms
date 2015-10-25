@@ -1,0 +1,192 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <include
+            android:id="@+id/tool_bar"
+            layout="@layout/tool_bar">
+        </include>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tool_bar"
+            android:background="@color/light_green"/>
+
+        <TextView
+            android:id="@+id/TagId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tool_bar"
+            android:textSize="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/dark_grey"
+            android:text="@string/tag_id" />
+
+        <TextView
+            android:id="@+id/TagIdInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tool_bar"
+            android:layout_toRightOf="@id/TagId"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="75dp"
+            android:textColor="@color/dark_green"
+            android:textSize="15dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/TagId"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/green"/>
+
+        <TextView
+            android:id="@+id/NameOfTree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/TagId"
+            android:textSize="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/dark_grey"
+            android:text="@string/name_of_tree" />
+
+        <TextView
+            android:id="@+id/NameOfTreeInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/TagId"
+            android:layout_toRightOf="@id/NameOfTree"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="45dp"
+            android:textColor="@color/dark_green"
+            android:textSize="15dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/NameOfTree"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/green"/>
+
+        <TextView
+            android:id="@+id/SpeciesOfTree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/NameOfTree"
+            android:textSize="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/dark_grey"
+            android:text="@string/species_of_tree" />
+
+        <TextView
+            android:id="@+id/SpeciesOfTreeInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/NameOfTree"
+            android:layout_toRightOf="@id/SpeciesOfTree"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="45dp"
+            android:textColor="@color/dark_green"
+            android:textSize="15dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/SpeciesOfTree"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/green"/>
+
+        <TextView
+            android:id="@+id/DateOfPlanting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/SpeciesOfTree"
+            android:textSize="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/dark_grey"
+            android:text="@string/date_of_planting" />
+
+        <TextView
+            android:id="@+id/DateOfPlantingInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/SpeciesOfTree"
+            android:layout_toRightOf="@id/DateOfPlanting"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="45dp"
+            android:textColor="@color/dark_green"
+            android:textSize="15dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/DateOfPlanting"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@color/green"/>
+
+        <TextView
+            android:id="@+id/ManagementRecord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/DateOfPlanting"
+            android:textSize="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/dark_grey"
+            android:text="@string/management_record" />
+
+        <ListView
+            android:id="@+id/mlistview"
+            android:layout_below="@id/ManagementRecord"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:id="@+id/frameLayout">
+
+            <ImageButton
+                android:layout_margin="15dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/ic_action"
+                android:background="@drawable/circle"
+                android:id="@+id/imageButton"
+                android:layout_gravity="right|bottom" />
+        </FrameLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

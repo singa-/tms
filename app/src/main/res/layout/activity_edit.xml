@@ -1,0 +1,124 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.seo.treemanagement.EditActivity">
+
+    <!-- 날짜 행위 비고 관리자명 -->
+
+    <TextView
+        android:id="@+id/DateOfEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/dark_grey"
+        android:text="@string/date_of_edit" />
+
+    <EditText
+        android:id="@+id/DateOfEditInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/DateOfEdit"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="45dp"
+        android:textColor="@color/dark_green"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/Activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/DateOfEdit"
+        android:textSize="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/dark_grey"
+        android:text="@string/activity" />
+
+    <EditText
+        android:id="@+id/ActivityInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/DateOfEdit"
+        android:layout_toRightOf="@id/Activity"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="45dp"
+        android:textColor="@color/dark_green"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/Note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Activity"
+        android:textSize="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/dark_grey"
+        android:text="@string/note" />
+
+    <EditText
+        android:id="@+id/NoteInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Activity"
+        android:layout_toRightOf="@id/Note"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="45dp"
+        android:textColor="@color/dark_green"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/NameOfAdmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Note"
+        android:textSize="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/dark_grey"
+        android:text="@string/name_of_admin" />
+
+    <EditText
+        android:id="@+id/NameOfAdminInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Note"
+        android:layout_toRightOf="@id/NameOfAdmin"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/dark_green"
+        android:textSize="15dp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/NameOfAdminInfo"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:id="@+id/StoreframeLayout">
+
+        <ImageButton
+            android:layout_margin="15dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_action"
+            android:background="@drawable/circle"
+            android:id="@+id/EditImageButton"
+            android:layout_gravity="right|top" />
+    </FrameLayout>
+
+</RelativeLayout>

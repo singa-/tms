@@ -1,6 +1,7 @@
 package com.example.seo.treemanagement;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,7 +39,8 @@ public class EditActivity extends AppCompatActivity {
         NoteInfo = (EditText) findViewById(R.id.NoteInfo);
         NameOfAdminInfo = (EditText) findViewById(R.id.NameOfAdminInfo);
 
-        FAB = (ImageButton) findViewById(R.id.EditImageButton);
+        FloatingActionButton FAB = (FloatingActionButton) findViewById(R.id.fab_edit);
+        //FAB = (ImageButton) findViewById(R.id.EditImageButton);
         FAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

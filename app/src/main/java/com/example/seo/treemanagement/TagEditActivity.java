@@ -14,6 +14,7 @@ import android.nfc.Tag;
 import android.nfc.tech.Ndef;
 import android.nfc.tech.NfcF;
 import android.os.Vibrator;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -55,7 +56,8 @@ public class TagEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tag_edit);
 
-        FAB = (ImageButton) findViewById(R.id.TagEditImageButton);
+        //FAB = (ImageButton) findViewById(R.id.TagEditImageButton);
+        FloatingActionButton FAB = (FloatingActionButton) findViewById(R.id.fab_tag_edit);
         FAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

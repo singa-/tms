@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -17,11 +18,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
@@ -86,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the layout to the toolbar object
         setSupportActionBar(toolbar);
 
-        FAB = (ImageButton) findViewById(R.id.imageButton);
+        FloatingActionButton FAB = (FloatingActionButton) findViewById(R.id.fab);
+        //FAB = (ImageButton) findViewById(R.id.imageButton);
         FAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Flag_EditRecordCalled = true;
 
-                    PostDataToServer();
+                    PostDataToServer(record);
 
                     //send data to server to update record
                 }
@@ -217,44 +220,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    protected void PostDataToServer(){
-        ConnectivityManager connMgr = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected()) {
-            if(TagId.getText().toString() != null)
-                //new DownloadFromWebTask().execute("http://tms8099.cafe24.com/tree_detail_xml.jsp?ID="+TagId.getText().toString());
-                new PostTomWebTask().execute("http://tms8099.cafe24.com/history_add.jsp");
-            else
-                Toast.makeText(this, "Tag ID is null..", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Internet is not connected. Check your network connection.", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private class PostTomWebTask extends AsyncTask<String, Void, Integer> {
-        @Override
-        protected Integer doInBackground(String... urls) {
-            Log.d(TAG, "PostTomWebTask doInBackground is called");
-            // params comes from the execute() call: params[0] is the url.
-            //uploadUrl(urls[0]);
-
-
-            //upload(urls[0]);
-            try {
-                return upload(urls[0]);
-            } catch (IOException e) {
-                e.printStackTrace();
-                return 0;
-            }
-
-        }
-
-        protected void onPostExecute(int a) {
-            Log.d(TAG, "onPostExecute is called");
-        }
-    }
-
     private class DownloadFromWebTask extends AsyncTask<String, Void, ArrayList<Record>> {
         @Override
         protected ArrayList<Record> doInBackground(String... urls) {
@@ -277,42 +242,6 @@ public class MainActivity extends AppCompatActivity {
 
             lvAdapter.notifyDataSetChanged();
         }
-    }
-
-    private Integer upload(String myurl) throws IOException {
-        //InputStream is = null;
-        // Only display the first 500 characters of the retrieved
-        // web page content.
-        //int len = 500;
-        //String contentAsString;
-        int a = 1;
-        Log.d(TAG, "uploadURL is called");
-
-        URL url = new URL(myurl);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setReadTimeout(10000 /* milliseconds */);
-        conn.setConnectTimeout(15000 /* milliseconds */);
-        //conn.setRequestMethod("POST");
-        conn.setDoOutput(true);
-        conn.setChunkedStreamingMode(0);
-        conn.setRequestProperty("content-type", "application/x-www-form-urlencoded");
-
-        //make data
-        StringBuffer buffer = new StringBuffer();
-        buffer.append("<input type=\"hidden\" name=\"tree_id\" value=\"04b749823f2b80\"/><br />\n" +
-                "<input type=\"text\" name=\"activity\" value=\"a\" /> <br />\n" +
-                "<input type=\"text\" name=\"name\" value=\"a\" /><br />\n" +
-                "<input type=\"text\" name=\"date\" value=\"1980-01-01\" />1980-01-01<br />\n" +
-                "<input type=\"text\" name=\"text\" value=\"a\" /> <br /><br />\n" +
-                "<input type=\"submit\" value=\"확인submit\" />");
-
-
-        OutputStreamWriter outStream = new OutputStreamWriter(conn.getOutputStream(), "EUC-KR");
-        PrintWriter writer = new PrintWriter(outStream);
-        writer.write(buffer.toString());
-        writer.flush();
-
-        return a;
     }
 
     // Given a URL, establishes an HttpUrlConnection and retrieves
@@ -347,7 +276,76 @@ public class MainActivity extends AppCompatActivity {
             if (is != null) {
                 is.close();
             }
-         }
+        }
+    }
+
+    protected void PostDataToServer(Record record){
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnected()) {
+            if(TagId.getText().toString() != null)
+                //new PostTomWebTask().execute("http://tms8099.cafe24.com/history_add.jsp");
+                new PostTomWebTask().execute(record);
+            else
+                Toast.makeText(this, "Tag ID is null..", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Internet is not connected. Check your network connection.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private class PostTomWebTask extends AsyncTask<Record, Void, Integer> {
+        @Override
+        protected Integer doInBackground(Record... record) {
+            Log.d(TAG, "PostTomWebTask doInBackground is called");
+            // params comes from the execute() call: params[0] is the url.
+
+            try {
+                return upload(record[0]);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return 0;
+            }
+        }
+
+        protected void onPostExecute(Integer result) {
+            Log.d(TAG, "onPostExecute is called");
+            Log.d(TAG, "response code is :" + String.valueOf(result));
+        }
+    }
+
+    private int upload(Record record) throws IOException {
+        Log.d(TAG, "uploadURL is called");
+
+        URL url = new URL("http://tms8099.cafe24.com/history_add.jsp");
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+        conn.setRequestMethod("POST");
+        conn.setDoOutput(true);
+        conn.setRequestProperty("Host", "tms8099.cafe24.com");
+        conn.setRequestProperty("Content-type", "application/x-www-form-urlencoded");
+        conn.setRequestProperty("Referer", "http://tms8099.cafe24.com/tree_add_form.jsp");
+        //conn.setRequestProperty("Content-Length", "33");
+
+        String ud = "tree_id="+TagId.getText().toString()+
+                "&activity=" +record.getActivityInfo()+
+                "&name="+record.getNameOfAdminInfo()+
+                "&date="+record.getDateOfEditInfo()+
+                "&text="+record.getNoteInfo();
+
+        OutputStream os = conn.getOutputStream();
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+        //writer.write("tree_id=04b749823f2b80&activity=장보러감&name=안우람&date=1980-01-04&text=1");
+        writer.write(ud);
+        writer.flush();
+        writer.close();
+        os.close();
+
+        conn.connect();
+        Log.d(TAG, "The response cod of Post is: " + String.valueOf(conn.getResponseCode()));
+
+        return conn.getResponseCode();
     }
 
     ArrayList<Record> parse(InputStream in) throws XmlPullParserException, IOException {
@@ -474,9 +472,6 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG,"ReadByteArray is null");
         }else
             parseNSetData();
-
-
-
     }
 
     public static String byteArrayToHex(byte[] a) {

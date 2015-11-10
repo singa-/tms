@@ -55,7 +55,9 @@ public class CustomAdapter extends BaseAdapter /*implements OnClickListener*/ {
         View v = new CustomAdapterView(this.context, record );
 
         //v.setBackgroundColor((position % 2) == 1 ? Color.rgb(50,50,50) : Color.BLACK);
-        v.setBackgroundColor(Color.parseColor("#00d27f"));
+        //v.setBackgroundColor(Color.parseColor("#00d27f"));
+        //v.setBackgroundColor(Color.parseColor("#b6fcd5"));
+        v.setBackgroundColor(Color.parseColor("#cccccc"));
         /*v.setOnClickListener(new OnItemClickListener(position));*/
         return v;
     }
